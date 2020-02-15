@@ -8,7 +8,7 @@ This project repository is for course COMP30830 Software Engineering (Conv) offe
 **Database Config**
 
 ### Username/ Db instance identifier
-- dublinbike
+- dublinbikes
 
 ### password
  -dba94w5p7
