@@ -12,3 +12,6 @@ This project repository is for course COMP30830 Software Engineering (Conv) offe
 
 ### password
  -dba94w5p7
+ 
+### Connection:
+ mysql -h dublinbikes.cpj6pmkzrors.eu-west-1.rds.amazonaws.com  -u dublinbikes -pmysql -h dublinbikes.cpj6pmkzrors.eu-west-1.rds.amazonaws.com  -u dublinbikes -p
