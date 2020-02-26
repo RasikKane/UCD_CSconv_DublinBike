@@ -6,7 +6,7 @@ arg = {"S" : " VALUES (%s, %s, %s, %s, %s, %s,%s, %s)", "D" : " VALUES (%s, %s, 
 
 def connectDB():
 
-    return pymysql.connect(host="localhost", user="root", password="localhost", database="db_24_2_1933", port=3306,\
+    return pymysql.connect(host="localhost", user="root", password="localhost", database="t3", port=3306,\
                                       cursorclass=pymysql.cursors.DictCursor)
 
 def publish(atr, val, table):
