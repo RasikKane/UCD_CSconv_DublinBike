@@ -5,15 +5,17 @@ from datetime import datetime
 
 staticAttribute = ['number', 'contract_name', 'name', 'address', 'position_lat', 'position_lng', 'bonus', 'banking']
 dynamicAttribute = ['number', 'status', 'bike_stands', 'available_bike_stands', 'available_bikes']
+weatherAttribute = []
 tsD = {'Dynamic' : 'last_update'}
+contract = {"dBike" : "dublin", "dWeather" : "2964574" }
+api_Key = {"dBike" : "dc66b92bfcdbe203fea9a98416b4924fde76145a", "dWeather" : "4896209d0bdece9b7668a4fb4e8a9c03" }
+credential_Files = {"dBike" : "apiKey_dBike.txt", "dWeather" : "apiKey_openWeather.txt" }
+credential_APIstr = {"dBike" : "https://api.jcdecaux.com/vls/v1/stations?contract=", "dWeather" : "https://api.openweathermap.org/data/2.5/weather?id=" }
+credential_KEYstr = {"dBike" : "&apiKey=", "dWeather" : "&appid=" }
 
 # File handling with python https://www.w3schools.com/python/python_file_open.asp
-def api_URL():
-    f = open("apiKey_dBike.txt", "r")
-    contract_name = f.readline().rstrip('\n')
-    api_key = f.readline().rstrip('\n')
-    f.close()
-    api_dBike_URL = "https://api.jcdecaux.com/vls/v1/stations?contract=" + contract_name + "&apiKey=" + api_key
+def api_URL(apiName):
+    api_dBike_URL = credential_APIstr[apiName] + contract[apiName] + credential_KEYstr[apiName] + api_Key[apiName]
     return api_dBike_URL
 
 def check_DB_Attribute():
@@ -78,7 +80,7 @@ def insert_Data(api_dBike_Resp_json):
 
 
 def main():
-    api_dBike_Resp = requests.get(api_URL())
+    api_dBike_Resp = requests.get(api_URL("dBike"))
     if api_dBike_Resp.status_code == 200 :
         insert_Data(api_dBike_Resp.json())
 
