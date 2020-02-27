@@ -3,7 +3,10 @@ import requests
 from publisher import *
 from datetime import datetime
 import time
+import schedule
+import logging
 
+logging.basicConfig(filename='logfile.log', format='%(name)s - %(levelname)s - %(message)s', level = logging.DEBUG)
 
 dBike_StaticAttribute = ['number', 'contract_name', 'name', 'address', 'position_lat', 'position_lng', 'bonus', 'banking']
 dBike_DynamicAttribute = ['number', 'status', 'bike_stands', 'available_bike_stands', 'available_bikes']
@@ -106,19 +109,36 @@ def insert_Data(api_Resp_json, api):
     publish(att_dy_final,val_dy_final,api+"D")
 
 
-def main():
-    # itr = 0
-    # while(itr<5):
+def dBike_call():
+    # print(time.ctime())
     api_dBike_Resp = requests.get(api_URL("dBike"))
     if api_dBike_Resp.status_code == 200 :
         insert_Data(api_dBike_Resp.json(),"dBike")
+    # print(time.ctime())
 
+def dWeather_call():
+    # print(time.ctime())
     api_dBike_Resp = requests.get(api_URL("dWeather"))
     if api_dBike_Resp.status_code == 200 :
         insert_Data(api_dBike_Resp.json(),"dWeather")
+    # print(time.ctime())
 
-        # itr+=1
-        # time.sleep(3600)
+def main():
+
+    itr=0
+    while(itr<2):
+        try:
+            logging.info('Data entry routine start : at {}'.format(time.ctime()))
+            dBike_call()
+            dWeather_call()
+            itr+=1
+            logging.info('Data entry routine end   : at {}'.format(time.ctime()))
+            time.sleep(5)
+        except Exception as e:
+            logging.setLevel(logging.ERROR)
+            logging.exception('Error during data entry  : at {}\n{}'.format(time.ctime(), e),'\n')
+
+
 
 if __name__ == '__main__':
     main()
