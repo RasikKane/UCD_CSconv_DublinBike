@@ -132,7 +132,7 @@ def main():
             dWeather_call()
             itr+=1
             logging.info('Data entry routine end   : at {}'.format(time.ctime()))
-            time.sleep(600)
+            time.sleep(60)
         except Exception as e:
             logging.setLevel(logging.ERROR)
             logging.exception('Error during data entry  : at {}\n{}'.format(time.ctime(), e),'\n')
