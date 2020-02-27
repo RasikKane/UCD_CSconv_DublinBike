@@ -125,7 +125,7 @@ def dWeather_call():
 def main():
 
     itr=0
-    while(itr<2):
+    while(True):
         try:
             logging.info('Data entry routine start : at {}'.format(time.ctime()))
             dBike_call()
