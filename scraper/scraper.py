@@ -3,7 +3,6 @@ import requests
 from publisher import *
 from datetime import datetime
 import time
-import schedule
 import logging
 
 logging.basicConfig(filename='logfile.log', format='%(name)s - %(levelname)s - %(message)s', level = logging.DEBUG)

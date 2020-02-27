@@ -12,7 +12,7 @@ def connectDB():
         return pymysql.connect(host="localhost", user="root", password="localhost", database="t4", port=3306,\
                                       cursorclass=pymysql.cursors.DictCursor)
     except Exception as e:
-        print("Error is", e)
+        return ("Error is", e)
 
 def publish(atr, val, table):
 
