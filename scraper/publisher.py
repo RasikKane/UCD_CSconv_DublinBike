@@ -12,7 +12,7 @@ def connectDB():
         return pymysql.connect(host="localhost", user="root", password="localhost", database="t4", port=3306,\
                                       cursorclass=pymysql.cursors.DictCursor)
     except Exception as e:
-        return ("Error is", e)
+        print("Error is", e)
 
 def publish(atr, val, table):
 
@@ -28,7 +28,7 @@ def publish(atr, val, table):
         dublinBike_connect.commit()
         dublinBike_connect.close()
     except Exception as e:
-        return ("Error is", e)
+        print("Error is", e)
 
 
 def Check_StaticEntry(attr, table):
@@ -42,4 +42,20 @@ def Check_StaticEntry(attr, table):
             dublinBike_connect.close()
             return cursor.rowcount == 1
     except Exception as e:
-        return ("Error is", e)
+        print("Error is", e)
+
+
+def check_Entry(table):
+
+    global DB
+    try:
+        dublinBike_connect = connectDB()
+        with dublinBike_connect.cursor() as cursor:
+            sql = "SELECT count(*) from " + DB[table]
+            cursor.execute(sql)
+            rows = cursor.fetchone()
+            dublinBike_connect.close()
+            return rows['count(*)']
+            # return cursor.rowcount
+    except Exception as e:
+        print("Error is", e)
