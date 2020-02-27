@@ -1,16 +1,17 @@
 import pymysql
 import cryptography
 
-DB = {"S" : "dublin_bike_staticdata", "D" : "dublin_bike_dynamicdata"}
-arg = {"S" : " VALUES (%s, %s, %s, %s, %s, %s,%s, %s)", "D" : " VALUES (%s, %s, %s, %s, %s, %s)"}
+DB = {"dBikeS" : "dublin_bike_staticdata", "dBikeD" : "dublin_bike_dynamicdata", "dWeatherD" : "open_weather_dynamicdata"}
+arg = {"dBikeS" : " VALUES (%s, %s, %s, %s, %s, %s,%s, %s)", "dBikeD" : " VALUES (%s, %s, %s, %s, %s, %s)",\
+        "dWeatherD" : " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,\
+        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"}
 
 def connectDB():
 
-    return pymysql.connect(host="localhost", user="root", password="localhost", database="db_24_2_1933", port=3306,\
+    return pymysql.connect(host="localhost", user="root", password="localhost", database="t3", port=3306,\
                                       cursorclass=pymysql.cursors.DictCursor)
 
 def publish(atr, val, table):
-    print('hi',val)
 
     global DB, arg
 
@@ -19,7 +20,6 @@ def publish(atr, val, table):
     with dublinBike_connect.cursor() as cursor:
 
         sql = "INSERT INTO " + DB[table] + atr + arg[table]
-        print(sql)
         cursor.executemany(sql,val)
 
     dublinBike_connect.commit()
@@ -27,7 +27,7 @@ def publish(atr, val, table):
     dublinBike_connect.close()
 
 
-def Check_StaticEntry(number, table):
+def Check_StaticEntry(attr, table):
 
     global DB
 
@@ -35,6 +35,6 @@ def Check_StaticEntry(number, table):
 
     with dublinBike_connect.cursor() as cursor:
         sql = "SELECT number from " + DB[table] + " where number = %s"
-        cursor.execute(sql,number)
+        cursor.execute(sql,attr)
         dublinBike_connect.close()
         return cursor.rowcount == 1
