@@ -88,3 +88,15 @@ urllib3.connectionpool - DEBUG - https://api.jcdecaux.com:443 "GET /vls/v1/stati
 urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.openweathermap.org:443
 urllib3.connectionpool - DEBUG - https://api.openweathermap.org:443 "GET /data/2.5/weather?id=2964574&appid=4896209d0bdece9b7668a4fb4e8a9c03 HTTP/1.1" 200 468
 root - INFO - Data entry routine end   : at Thu Feb 27 14:38:43 2020
+root - INFO - Data entry routine start : at Thu Feb 27 14:41:10 2020
+urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.jcdecaux.com:443
+urllib3.connectionpool - DEBUG - https://api.jcdecaux.com:443 "GET /vls/v1/stations?contract=dublin&apiKey=dc66b92bfcdbe203fea9a98416b4924fde76145a HTTP/1.1" 200 4771
+urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.openweathermap.org:443
+urllib3.connectionpool - DEBUG - https://api.openweathermap.org:443 "GET /data/2.5/weather?id=2964574&appid=4896209d0bdece9b7668a4fb4e8a9c03 HTTP/1.1" 200 468
+root - INFO - Data entry routine end   : at Thu Feb 27 14:41:11 2020
+root - INFO - Data entry routine start : at Thu Feb 27 14:41:16 2020
+urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.jcdecaux.com:443
+urllib3.connectionpool - DEBUG - https://api.jcdecaux.com:443 "GET /vls/v1/stations?contract=dublin&apiKey=dc66b92bfcdbe203fea9a98416b4924fde76145a HTTP/1.1" 200 4771
+urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.openweathermap.org:443
+urllib3.connectionpool - DEBUG - https://api.openweathermap.org:443 "GET /data/2.5/weather?id=2964574&appid=4896209d0bdece9b7668a4fb4e8a9c03 HTTP/1.1" 200 468
+root - INFO - Data entry routine end   : at Thu Feb 27 14:41:17 2020

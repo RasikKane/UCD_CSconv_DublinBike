@@ -28,11 +28,11 @@ def api_URL(apiName):
     return api_dBike_URL
 
 
-def check_instance(dictionary):
-    if isinstance(resp_Fields[key],dict):
-        return True
-    else:
-        return False
+# def check_instance(dictionary):
+#     if isinstance(resp_Fields[key],dict):
+#         return True
+#     else:
+#         return False
 
 # flatten dictionary +sep+https://medium.com/better-programming/how-to-flatten-a-dictionary-with-nested-lists-and-dictionaries-in-python-524fd236365
 def flatten(collection_input,sep="_"):
