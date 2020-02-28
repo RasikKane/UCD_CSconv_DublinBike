@@ -18,8 +18,8 @@ def connectDB():
         #                               cursorclass=pymysql.cursors.DictCursor)
 
         # Server local connection:
-        return pymysql.connect(host="dublinbikes.cpj6pmkzrors.eu-west-1.rds.amazonaws.com", user="dublin_bike_schema",
-                               password="dba94w5p7", database="dublinBikes", port=3306, \
+        return pymysql.connect(host="dublinbikes.cpj6pmkzrors.eu-west-1.rds.amazonaws.com", user="dublinbikes",
+                               password="dba94w5p7", database="dublin_bike_schema", port=3306, \
                                cursorclass=pymysql.cursors.DictCursor)
     except Exception as e:
         print("Error is", e)
