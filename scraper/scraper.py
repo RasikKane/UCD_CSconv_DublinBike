@@ -124,19 +124,30 @@ def dWeather_call():
 
 def main():
 
-    itr=0
-    while(True):
-        try:
-            logging.info('Data entry routine start : at {}'.format(time.ctime()))
-            dBike_call()
-            dWeather_call()
-            itr+=1
-            logging.info('Data entry routine end   : at {}'.format(time.ctime()))
-            time.sleep(600)
-        except Exception as e:
-            logging.setLevel(logging.ERROR)
-            logging.exception('Error during data entry  : at {}\n{}'.format(time.ctime(), e),'\n')
+    # itr=0
+    # while(True):
+    #     try:
+    #         logging.info('Data entry routine start : at {}'.format(time.ctime()))
+    #         dBike_call()
+    #         dWeather_call()
+    #         itr+=1
+    #         logging.info('Data entry routine end   : at {}'.format(time.ctime()))
+    #         time.sleep(600)
+    #     except Exception as e:
+    #         logging.setLevel(logging.ERROR)
+    #         logging.exception('Error during data entry  : at {}\n{}'.format(time.ctime(), e),'\n')
 
+
+    ## New code using cron
+
+    try:
+        logging.info('Data entry routine start : at {}'.format(time.ctime()))
+        dBike_call()
+        dWeather_call()
+        logging.info('Data entry routine end   : at {}'.format(time.ctime()))
+    except Exception as e:
+        logging.setLevel(logging.ERROR)
+        logging.exception('Error during data entry  : at {}\n{}'.format(time.ctime(), e), '\n')
 
 
 if __name__ == '__main__':
