@@ -1,5 +1,9 @@
 import pymysql
 import cryptography
+import sys
+
+
+sys.stdout = open("logfile.txt", "a+")
 
 DB = {"dBikeS" : "dublin_bike_staticdata", "dBikeD" : "dublin_bike_dynamicdata", "dWeatherD" : "open_weather_dynamicdata"}
 arg = {"dBikeS" : " VALUES (%s, %s, %s, %s, %s, %s,%s, %s)", "dBikeD" : " VALUES (%s, %s, %s, %s, %s, %s)",\
@@ -9,7 +13,7 @@ arg = {"dBikeS" : " VALUES (%s, %s, %s, %s, %s, %s,%s, %s)", "dBikeD" : " VALUES
 def connectDB():
 
     try:
-        return pymysql.connect(host="localhost", user="root", password="localhost", database="t4", port=3306,\
+        return pymysql.connect(host="localhost", user="root", password="localhost", database="t9", port=3306,\
                                       cursorclass=pymysql.cursors.DictCursor)
     except Exception as e:
         print("Error is", e)
