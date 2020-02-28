@@ -9,6 +9,7 @@ import sys
 
 sys.stdout = open("logfile.txt", "a+")
 
+
 dBike_StaticAttribute = ['number', 'contract_name', 'name', 'address', 'position_lat', 'position_lng', 'bonus', 'banking']
 dBike_DynamicAttribute = ['number', 'status', 'bike_stands', 'available_bike_stands', 'available_bikes']
 dWeather_DynamicAttribute = ['coord_lat', 'coord_lon', 'weather_id', 'weather_main', 'weather_description', 'weather_icon', 'base',\
