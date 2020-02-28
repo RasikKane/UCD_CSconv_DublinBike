@@ -124,17 +124,14 @@ def dWeather_call():
         insert_Data(api_dBike_Resp.json(),"dWeather")
 
 def main():
+    try:
+        dBike_call()
+        dWeather_call()
+        print('Last Data entry    : at {}'.format(time.ctime()), "\ndBikeSt entries", check_Entry("dBikeS"),
+              "dBikeSDy entries", check_Entry("dBikeD"), "dWeatherDy entries", check_Entry("dWeatherD"))
+    except Exception as e:
+        print("Error", e)
 
-    itr=0
-    while(itr<2):
-        try:
-            dBike_call()
-            dWeather_call()
-            itr+=1
-            time.sleep(5)
-            print('Last Data entry    : at {}'.format(time.ctime()),"\ndBikeSt entries",check_Entry("dBikeS"),"dBikeSDy entries",check_Entry("dBikeD"),"dWeatherDy entries",check_Entry("dWeatherD"))
-        except Exception as e:
-            print("Error", e)
 
 
 if __name__ == '__main__':

@@ -35,7 +35,7 @@ CREATE TABLE `dublin_bike_dynamicdata` (
   UNIQUE KEY `id_Entry_UNIQUE` (`id_Entry`),
   KEY `number_FK_idx` (`number`),
   CONSTRAINT `number_FK` FOREIGN KEY (`number`) REFERENCES `dublin_bike_staticdata` (`number`)
-) ENGINE=InnoDB AUTO_INCREMENT=1745 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1745 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +59,7 @@ CREATE TABLE `dublin_bike_staticdata` (
   UNIQUE KEY `number_UNIQUE` (`number`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `index4` (`position_lat`,`position_lng`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `open_weather_dynamicdata` (
   `data_entry_timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_Entry`),
   UNIQUE KEY `id_Entry_UNIQUE` (`id_Entry`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
