@@ -1,5 +1,6 @@
 import pymysql
 import cryptography
+from datetime import datetime
 import sys
 
 
@@ -10,6 +11,7 @@ arg = {"dBikeS" : " VALUES (%s, %s, %s, %s, %s, %s,%s, %s)", "dBikeD" : " VALUES
         "dWeatherD" : " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,\
         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"}
 
+# Connection handle to database
 def connectDB():
 
     try:
@@ -22,8 +24,9 @@ def connectDB():
                                password="dba94w5p7", database="dublin_bike_schema", port=3306, \
                                cursorclass=pymysql.cursors.DictCursor)
     except Exception as e:
-        print("Error is", e)
+        print("Error", e, datetime.now())
 
+# Push data to a database table
 def publish(atr, val, table):
 
     global DB, arg
@@ -38,9 +41,9 @@ def publish(atr, val, table):
         dublinBike_connect.commit()
         dublinBike_connect.close()
     except Exception as e:
-        print("Error is", e)
+        print("Error", e, datetime.now())
 
-
+# Check if a station entry is made in static database or not
 def Check_StaticEntry(attr, table):
 
     global DB
@@ -52,9 +55,9 @@ def Check_StaticEntry(attr, table):
             dublinBike_connect.close()
             return cursor.rowcount == 1
     except Exception as e:
-        print("Error is", e)
+        print("Error", e, datetime.now())
 
-
+# Return count of entries into a database table
 def check_Entry(table):
 
     global DB
@@ -68,4 +71,4 @@ def check_Entry(table):
             return rows['count(*)']
             # return cursor.rowcount
     except Exception as e:
-        print("Error is", e)
+        print("Error", e, datetime.now())
