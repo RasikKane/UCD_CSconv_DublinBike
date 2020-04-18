@@ -3,7 +3,6 @@ import requests
 from publisher import *
 from datetime import datetime
 import time
-import logging
 import sys
 
 
@@ -54,6 +53,7 @@ def insert_Data(api_Resp_json, api):
     att_st_final, val_st_final,att_dy_final, val_dy_final = '',[],'',[]
     DB_dict = {}
 
+
     if api == "dBike":
         dynamicAttribute = dBike_DynamicAttribute
         staticAttribute = dBike_StaticAttribute
@@ -69,6 +69,7 @@ def insert_Data(api_Resp_json, api):
     for stations in range(len(api_Resp_json)):
         val_st, val_dy =[],[]
 
+        # seriealise nested directory entries creating new columns whereever necessary
         DB_dict = flatten(api_Resp_json[stations])
 
         for attributeDy in dynamicAttribute:
@@ -83,6 +84,7 @@ def insert_Data(api_Resp_json, api):
             except KeyError:
                 val_dy.append(None)
 
+        # Normalise temperature related entries to degree celsius before logging in weather database
         if api == "dWeather":
             for itr in range(len(tempDy[api])):
                 try:
@@ -92,7 +94,7 @@ def insert_Data(api_Resp_json, api):
 
         val_dy_final.append(val_dy)
 
-
+        # Check if entry exists for a station in static data. If station entry exists, do not update static data
         if staticAttribute and not Check_StaticEntry(DB_dict['number'], api+"S"):
             for attributeSt in staticAttribute:
                 try:
@@ -103,6 +105,7 @@ def insert_Data(api_Resp_json, api):
         else:
             continue
 
+    # Create string of attribute names in format suitable for sql entry
     if staticAttribute:
         att_st_final = "(`" + '`,`'.join(str(sAtt) for sAtt in staticAttribute) +  "`)"
     att_dy_final = "(`" + '`,`'.join(str(dAtt) for dAtt in dynamicAttribute) + "`,`" +'`,`'.join(str(tsDy) for tsDy in timeStampDy[api])+"`)" if api == "dBike" else\
@@ -113,11 +116,13 @@ def insert_Data(api_Resp_json, api):
     publish(att_dy_final,val_dy_final,api+"D")
 
 
+# Obtain API response from JCDecaux dublin bike API and insert it to RDS database
 def dBike_call():
     api_dBike_Resp = requests.get(api_URL("dBike"))
     if api_dBike_Resp.status_code == 200 :
         insert_Data(api_dBike_Resp.json(),"dBike")
 
+# Obtain API response from openweathermap API and insert it to RDS database
 def dWeather_call():
     api_dBike_Resp = requests.get(api_URL("dWeather"))
     if api_dBike_Resp.status_code == 200 :
@@ -130,7 +135,7 @@ def main():
         print('Last Data entry    : at {}'.format(time.ctime()), "\ndBikeSt entries", check_Entry("dBikeS"),
               "dBikeSDy entries", check_Entry("dBikeD"), "dWeatherDy entries", check_Entry("dWeatherD"))
     except Exception as e:
-        print("Error", e)
+        print("Error", e, datetime.now())
 
 
 
