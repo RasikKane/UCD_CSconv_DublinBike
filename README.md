@@ -15,8 +15,10 @@ This project repository is for course COMP30830 Software Engineering (Conv) offe
  -dba94w5p7
  
 ### Connection:
- mysql -h dublinbikes.cpj6pmkzrors.eu-west-1.rds.amazonaws.com  -u dublinbikes -pmysql -h dublinbikes.cpj6pmkzrors.eu-west-1.rds.amazonaws.com  -u dublinbikes -p
+ mysql -h dublinbikes.cpj6pmkzrors.eu-west-1.rds.amazonaws.com  -u dublinbikes -pmysql  -u dublinbikes -p
  
  ## Postman Credential:
  ### email: omkar.joshi@ucdconnect.ie
  ### pass: dublinbike
+ 
+mysql -h dublinbike.cpj6pmkzrors.eu-west-1.rds.amazonaws.com  -u dublinbike -pmysql  -u dublinbike -p

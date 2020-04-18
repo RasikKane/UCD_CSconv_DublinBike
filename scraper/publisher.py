@@ -14,7 +14,7 @@ def connectDB():
 
     try:
         #Local connection
-        # return pymysql.connect(host="localhost", user="root", password="admin", database="local_dbbike", port=3306,\
+        # return pymysql.connect(host="localhost", user="root", password="", database="test", port=3306,\
         #                               cursorclass=pymysql.cursors.DictCursor)
 
         # Server local connection:
