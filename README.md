@@ -22,3 +22,6 @@ Webapp for visualizing availability and associated information [Weather, Tempera
  - **https://github.com/omijoshi09/flask_app**
 
 This project repository is for course COMP30830 Software Engineering (Conv) offered at University College Dublin for EY 2020 trimester 2. It is strictly eduactional and private till end of trimester in May 2020.  
+
+# Find the website hosted at:
+http://34.243.168.221/
