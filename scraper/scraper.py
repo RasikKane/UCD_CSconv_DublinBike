@@ -5,17 +5,18 @@ from datetime import datetime
 import time
 import sys
 
-
+# Save all print statements into logfile.txt instead of printing on console
 sys.stdout = open("logfile.txt", "a+")
 
+## ******************************************************************************************************************************************************##
 
+# Names for features in database tables are arrnaged int odictionaries to avoid hardcoding and code maintainance
 dBike_StaticAttribute = ['number', 'contract_name', 'name', 'address', 'position_lat', 'position_lng', 'bonus', 'banking']
 dBike_DynamicAttribute = ['number', 'status', 'bike_stands', 'available_bike_stands', 'available_bikes']
 dWeather_DynamicAttribute = ['coord_lat', 'coord_lon', 'weather_id', 'weather_main', 'weather_description', 'weather_icon', 'base',\
                     'main_sea_level', 'main_grnd_level',\
                     'main_pressure','main_humidity','visibility', 'rain_1h', 'rain_3h', 'snow_1h', 'snow_3h','wind_speed','wind_deg','wind_gust',\
                     'clouds_all', 'sys_type', 'sys_id', 'sys_country', 'sys_message','timezone', 'id', 'name', 'cod']
-
 timeStampDy = {'dBike' : ['last_update'], 'dWeather' : ['dt', 'sys_sunrise', 'sys_sunset']}
 tempDy = {'dWeather' : ['main_temp','main_feels_like','main_temp_max','main_temp_min']}
 timeStampDevider = {'dBike' : 1000, 'dWeather' : 1}
@@ -25,12 +26,14 @@ credential_Files = {"dBike" : "apiKey_dBike.txt", "dWeather" : "apiKey_openWeath
 credential_APIstr = {"dBike" : "https://api.jcdecaux.com/vls/v1/stations?contract=", "dWeather" : "https://api.openweathermap.org/data/2.5/weather?id=" }
 credential_KEYstr = {"dBike" : "&apiKey=", "dWeather" : "&appid=" }
 
+## ******************************************************************************************************************************************************##
+
 # File handling with python https://www.w3schools.com/python/python_file_open.asp
 def api_URL(apiName):
     api_dBike_URL = credential_APIstr[apiName] + contract[apiName] + credential_KEYstr[apiName] + api_Key[apiName]
     return api_dBike_URL
 
-# flatten dictionary +sep+https://medium.com/better-programming/how-to-flatten-a-dictionary-with-nested-lists-and-dictionaries-in-python-524fd236365
+# flatten dictionary https://medium.com/better-programming/how-to-flatten-a-dictionary-with-nested-lists-and-dictionaries-in-python-524fd236365
 def flatten(collection_input,sep="_"):
     dictionary = {}
 
@@ -48,7 +51,10 @@ def flatten(collection_input,sep="_"):
     recurse(collection_input)
     return dictionary
 
+## ******************************************************************************************************************************************************##
 
+# insert_DataI() accepts json response from JCDecaux and openweathermap API along with key for table name in database
+# Fuction arranges all data, processes temperature data entry into celcius scale and publishes the data
 def insert_Data(api_Resp_json, api):
     att_st_final, val_st_final,att_dy_final, val_dy_final = '',[],'',[]
     DB_dict = {}
@@ -115,6 +121,7 @@ def insert_Data(api_Resp_json, api):
         publish(att_st_final,val_st_final,api+"S")
     publish(att_dy_final,val_dy_final,api+"D")
 
+## ******************************************************************************************************************************************************##
 
 # Obtain API response from JCDecaux dublin bike API and insert it to RDS database
 def dBike_call():
@@ -141,3 +148,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+## ******************************************************************************************************************************************************##
